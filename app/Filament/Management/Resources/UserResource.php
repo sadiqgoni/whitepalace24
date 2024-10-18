@@ -5,6 +5,7 @@ namespace App\Filament\Management\Resources;
 use App\Filament\Management\Resources\UserResource\Pages;
 use App\Filament\Management\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Infolists\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -20,9 +21,13 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'management';
+    }
     protected static ?string $navigationIcon = 'heroicon-o-user-plus';
     protected static ?string $navigationGroup = 'Staff Management';
+
     protected static ?string $modelLabel = 'System Users';
     protected static ?string $navigationLabel = 'System Users';
 

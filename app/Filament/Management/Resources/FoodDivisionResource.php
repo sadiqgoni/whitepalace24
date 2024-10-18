@@ -5,6 +5,7 @@ namespace App\Filament\Management\Resources;
 use App\Filament\Management\Resources\FoodDivisionResource\Pages;
 use App\Filament\Management\Resources\FoodDivisionResource\RelationManagers;
 use App\Models\FoodDivision;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -25,11 +26,11 @@ class FoodDivisionResource extends Resource
     protected static ?string $navigationGroup = 'Food Section';
     public static function form(Form $form): Form
     {
-              // Helper function to format names
-              $formatName = function ($state, callable $set, $field) {
-                $formatted = ucwords(strtolower($state));
-                $set($field, $formatted);
-            };
+        // Helper function to format names
+        $formatName = function ($state, callable $set, $field) {
+            $formatted = ucwords(strtolower($state));
+            $set($field, $formatted);
+        };
         return $form
             ->schema([
                 Section::make('')
@@ -37,7 +38,7 @@ class FoodDivisionResource extends Resource
                         TextInput::make('name')
                             ->label('Classification Name')
                             ->required()
-                            ->live(onBlur:true)
+                            ->live(onBlur: true)
                             ->afterStateUpdated(fn($state, $set) => $formatName($state, $set, 'name'))
                             ->maxLength(255),
                         // Icon selection dropdown
@@ -71,7 +72,7 @@ class FoodDivisionResource extends Resource
     {
         return $table
             ->columns([
-             
+
                 TextColumn::make('name')
                     ->label('Classification Name')
                     ->sortable()
@@ -115,5 +116,9 @@ class FoodDivisionResource extends Resource
             'create' => Pages\CreateFoodDivision::route('/create'),
             'edit' => Pages\EditFoodDivision::route('/{record}/edit'),
         ];
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'management';
     }
 }

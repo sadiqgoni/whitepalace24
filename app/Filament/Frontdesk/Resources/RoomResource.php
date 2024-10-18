@@ -5,6 +5,7 @@ namespace App\Filament\Frontdesk\Resources;
 use App\Filament\Frontdesk\Resources\RoomResource\Pages;
 use App\Filament\Frontdesk\Resources\RoomResource\RelationManagers;
 use App\Models\Room;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -60,5 +61,9 @@ class RoomResource extends Resource
             'create' => Pages\CreateRoom::route('/create'),
             'edit' => Pages\EditRoom::route('/{record}/edit'),
         ];
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'frontdesk';
     }
 }

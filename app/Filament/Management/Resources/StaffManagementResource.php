@@ -5,6 +5,7 @@ namespace App\Filament\Management\Resources;
 use App\Filament\Management\Resources\StaffManagementResource\Pages;
 use App\Filament\Management\Resources\StaffManagementResource\RelationManagers;
 use App\Models\StaffManagement;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\ImageEntry;
@@ -23,7 +24,12 @@ use Filament\Infolists\Infolist;
 class StaffManagementResource extends Resource
 {
     protected static ?string $model = StaffManagement::class;
-
+    
+    // Make resource visible only in the 'management' panel
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'management';
+    }
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Staff Management';
     protected static ?string $modelLabel = 'Hotel Staffs';
@@ -180,8 +186,8 @@ class StaffManagementResource extends Resource
                     ->sortable(),
                 ImageColumn::make('profile_picture')
                     ->label('Profile Picture')
-                    ->rounded() 
-                    ->width(50) 
+                    ->rounded()
+                    ->width(50)
                     ->height(50),
                 TextColumn::make('full_name')
                     ->label('Full Name')
@@ -207,7 +213,7 @@ class StaffManagementResource extends Resource
                     ->label('Phone')
                     ->sortable(),
 
-                 BadgeColumn::make('shift')
+                BadgeColumn::make('shift')
                     ->label('Shift')
                     ->colors([
                         'success' => 'Morning',
@@ -251,7 +257,7 @@ class StaffManagementResource extends Resource
     {
         return $infolist
             ->schema([
-    
+
                 // Personal Information Section
                 \Filament\Infolists\Components\Section::make('Personal Information')
                     ->schema([
@@ -260,20 +266,20 @@ class StaffManagementResource extends Resource
                                 ->schema([
                                     TextEntry::make('full_name')
                                         ->label('Full Name'),
-    
+
                                     TextEntry::make('email')
                                         ->label('Email Address'),
-    
+
                                     TextEntry::make('phone_number')
                                         ->label('Phone Number'),
-    
+
                                     TextEntry::make('date_of_birth')
                                         ->label('Date of Birth')
                                         ->date(),
                                 ]),
                         ]),
                     ]),
-    
+
                 // Employment Details Section
                 \Filament\Infolists\Components\Section::make('Employment Details')
                     ->schema([
@@ -282,25 +288,25 @@ class StaffManagementResource extends Resource
                                 ->schema([
                                     TextEntry::make('role')
                                         ->label('Role'),
-    
+
                                     TextEntry::make('employment_date')
                                         ->label('Employment Date')
                                         ->date(),
-    
+
                                     TextEntry::make('termination_date')
                                         ->label('Termination Date')
                                         ->date()
                                         ->hidden(fn($record) => $record->termination_date === null),
-    
+
                                     TextEntry::make('shift')
                                         ->label('Shift'),
-    
+
                                     TextEntry::make('status')
                                         ->label('Employment Status'),
                                 ]),
                         ]),
                     ]),
-    
+
                 // Next of Kin Information Section
                 \Filament\Infolists\Components\Section::make('Next of Kin Information')
                     ->schema([
@@ -309,16 +315,16 @@ class StaffManagementResource extends Resource
                                 ->schema([
                                     TextEntry::make('next_of_kin_name')
                                         ->label('Next of Kin Name'),
-    
+
                                     TextEntry::make('next_of_kin_phone_number')
                                         ->label('Next of Kin Phone Number'),
-    
+
                                     TextEntry::make('next_of_kin_address')
                                         ->label('Next of Kin Address'),
                                 ]),
                         ]),
                     ]),
-    
+
                 // Additional Information Section
                 \Filament\Infolists\Components\Section::make('Additional Information')
                     ->schema([
@@ -327,16 +333,16 @@ class StaffManagementResource extends Resource
                                 ->schema([
                                     TextEntry::make('address')
                                         ->label('Address'),
-    
-                                        ImageEntry::make('profile_picture')
+
+                                    ImageEntry::make('profile_picture')
                                         ->label('Profile Picture')
                                 ]),
                         ]),
                     ]),
-    
+
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
