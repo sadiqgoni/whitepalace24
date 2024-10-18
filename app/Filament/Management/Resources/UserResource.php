@@ -21,8 +21,11 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationIcon = 'heroicon-o-user-plus';
+    protected static ?string $navigationGroup = 'Staff Management';
+    protected static ?string $modelLabel = 'System Users';
+    protected static ?string $navigationLabel = 'System Users';
+
     public static function form(Form $form): Form
     {
         // Helper function to format names
@@ -66,7 +69,7 @@ class UserResource extends Resource
                             ->required()
                             ->placeholder('Enter a secure password')
                             ->maxLength(255)
-                    ]),
+                    ])->columns(2)
             ]);
     }
 

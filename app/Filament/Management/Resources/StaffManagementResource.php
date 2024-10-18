@@ -24,9 +24,10 @@ class StaffManagementResource extends Resource
 {
     protected static ?string $model = StaffManagement::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationGroup = 'Staff Management';
+    protected static ?string $modelLabel = 'Hotel Staffs';
+    protected static ?string $navigationLabel = 'Hotel Staffs';
     public static function form(Form $form): Form
     {
         // Helper function to format names
