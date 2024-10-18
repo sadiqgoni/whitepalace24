@@ -11,8 +11,8 @@ class FoodDivision extends Model
     
     protected $fillable = ['name', 'description', 'icon'];
 
-    // public function menuItems()
-    // {
-    //     return $this->hasMany(MenuItem::class);
-    // }
+    public function foodCreation()
+    {
+        return $this->hasMany(FoodCreation::class);
+    }
 }

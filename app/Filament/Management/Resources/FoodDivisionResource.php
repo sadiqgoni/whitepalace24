@@ -22,7 +22,7 @@ class FoodDivisionResource extends Resource
 {
     protected static ?string $model = FoodDivision::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-view-columns';
+    protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
     protected static ?string $navigationGroup = 'Food Section';
     public static function form(Form $form): Form
     {
@@ -81,9 +81,7 @@ class FoodDivisionResource extends Resource
                 TextColumn::make('icon')
                     ->label('Icon')
                     ->formatStateUsing(fn($state) => $state),
-                // TextColumn::make('description')
-                //     ->label('Description')
-                //     ->limit(50),
+           
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
