@@ -5,6 +5,7 @@ namespace App\Filament\Management\Resources;
 use App\Filament\Management\Resources\FoodCreationResource\Pages;
 use App\Filament\Management\Resources\FoodCreationResource\RelationManagers;
 use App\Models\FoodCreation;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -134,5 +135,9 @@ class FoodCreationResource extends Resource
             'create' => Pages\CreateFoodCreation::route('/create'),
             'edit' => Pages\EditFoodCreation::route('/{record}/edit'),
         ];
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'management';
     }
 }
