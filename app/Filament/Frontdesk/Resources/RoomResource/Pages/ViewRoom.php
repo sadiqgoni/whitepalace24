@@ -4,21 +4,16 @@ namespace App\Filament\Frontdesk\Resources\RoomResource\Pages;
 
 use App\Filament\Frontdesk\Resources\RoomResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditRoom extends EditRecord
+class ViewRoom extends ViewRecord
 {
     protected static string $resource = RoomResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\EditAction::make(),
         ];
-    }
-
-    protected function getRedirectUrl(): string{
-        return $this->getResource()::getUrl('index');
     }
 }

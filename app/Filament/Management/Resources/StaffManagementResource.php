@@ -25,7 +25,6 @@ class StaffManagementResource extends Resource
 {
     protected static ?string $model = StaffManagement::class;
     
-    // Make resource visible only in the 'management' panel
     public static function shouldRegisterNavigation(): bool
     {
         return Filament::getCurrentPanel()?->getId() === 'management';

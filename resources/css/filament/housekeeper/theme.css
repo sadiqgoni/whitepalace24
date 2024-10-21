@@ -38,3 +38,5 @@
 .fi-sidebar-item-active .fi-icon-btn {
     @apply text-white dark:text-white; /* Active state */
 }
+
+
