@@ -1,0 +1,39 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+@config 'tailwind.config.js';
+
+.fi-sidebar {
+    @apply bg-green-500 dark:bg-gray-900 border-r border-gray-300 dark:border-gray-700 shadow-lg !important;
+
+}
+
+.fi-sidebar-nav {
+    @apply bg-green-400 hover:bg-green-300 dark:bg-gray-700 mr-4 shadow-md rounded-lg;
+}
+.fi-header-heading {
+    @apply bg-gradient-to-r from-green-600 to-green-400 text-transparent bg-clip-text font-bold;
+}
+
+/* Sidebar Header */
+.fi-sidebar-header {
+    @apply dark:bg-gray-900 bg-green-500 ring-0 shadow-none mr-4;
+}
+
+/* Sidebar Item Active */
+.fi-sidebar-item-active a {
+    @apply bg-green-600 hover:bg-green-500 dark:bg-green-700 dark:hover:bg-green-600 text-white transition-all ease-in-out;
+
+}
+
+/* Sidebar Text and Icon - Default Inactive */
+.fi-sidebar-item-label, .fi-sidebar-item-icon, .fi-sidebar-group-label, .fi-icon-btn {
+    @apply text-gray-800 dark:text-gray-200; /* Inactive state */
+}
+
+/* Sidebar Text and Icon - Active */
+.fi-sidebar-item-active .fi-sidebar-item-label, 
+.fi-sidebar-item-active .fi-sidebar-item-icon, 
+.fi-sidebar-item-active .fi-sidebar-group-label, 
+.fi-sidebar-item-active .fi-icon-btn {
+    @apply text-white dark:text-white; /* Active state */
+}
+

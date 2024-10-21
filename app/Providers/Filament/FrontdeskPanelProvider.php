@@ -29,7 +29,7 @@ class FrontdeskPanelProvider extends PanelProvider
             ->path('frontdesk')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Green,
             ])
             ->discoverResources(in: app_path('Filament/Frontdesk/Resources'), for: 'App\\Filament\\Frontdesk\\Resources')
             ->discoverResources(in: app_path('Filament/Management/Resources'), for: 'App\\Filament\\Management\\Resources')
@@ -60,7 +60,7 @@ class FrontdeskPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Frontdesk/Widgets'), for: 'App\\Filament\\Frontdesk\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -75,6 +75,8 @@ class FrontdeskPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/frontdesk/theme.css');
+            
     }
 }

@@ -7,6 +7,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
+use Filament\Navigation\MenuItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -28,7 +29,19 @@ class ManagementPanelProvider extends PanelProvider
             ->path('management')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
+            ])
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Front Desk')
+                    ->url('/frontdesk')
+                    ->icon('heroicon-o-users')
+                    ->visible(fn(): bool => auth()->user()->role === 'Manager'),
+                MenuItem::make()
+                    ->label('Restaurant')
+                    ->url('/restaurant')
+                    ->icon('heroicon-o-squares-2x2')
+                    ->visible(fn(): bool => auth()->user()->role === 'Manager')
             ])
             ->discoverResources(in: app_path('Filament/Management/Resources'), for: 'App\\Filament\\Management\\Resources')
             ->discoverPages(in: app_path('Filament/Management/Pages'), for: 'App\\Filament\\Management\\Pages')
@@ -38,7 +51,6 @@ class ManagementPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Management/Widgets'), for: 'App\\Filament\\Management\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
                 StatsOverview::class,
 
             ])
@@ -55,6 +67,8 @@ class ManagementPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/management/theme.css');
+            
     }
 }

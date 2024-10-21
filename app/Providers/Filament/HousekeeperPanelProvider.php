@@ -51,6 +51,8 @@ class HousekeeperPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/housekeeper/theme.css');
+
     }
 }

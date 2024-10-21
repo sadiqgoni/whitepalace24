@@ -1,0 +1,40 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+@config 'tailwind.config.js';
+
+/* Sidebar */
+.fi-sidebar {
+    @apply bg-orange-400 dark:bg-gray-900 border-r border-gray-300 dark:border-gray-700 shadow-lg !important;
+}
+
+/* Sidebar Navigation */
+.fi-sidebar-nav {
+    @apply bg-orange-200 hover:bg-orange-100 dark:bg-gray-700 mr-4 shadow-md rounded-lg;
+}
+
+/* Header Heading */
+.fi-header-heading {
+    @apply bg-gradient-to-r from-orange-400 to-orange-300 text-transparent bg-clip-text font-bold;
+}
+
+/* Sidebar Header */
+.fi-sidebar-header {
+    @apply dark:bg-gray-900 bg-orange-400 ring-0 shadow-none mr-4;
+}
+
+/* Sidebar Item Active */
+.fi-sidebar-item-active a {
+    @apply bg-orange-400 hover:bg-orange-300 dark:bg-orange-500 dark:hover:bg-orange-400 text-white transition-all ease-in-out;
+}
+
+/* Sidebar Text and Icon - Default Inactive */
+.fi-sidebar-item-label, .fi-sidebar-item-icon, .fi-sidebar-group-label, .fi-icon-btn {
+    @apply text-gray-800 dark:text-gray-200; /* Inactive state */
+}
+
+/* Sidebar Text and Icon - Active */
+.fi-sidebar-item-active .fi-sidebar-item-label, 
+.fi-sidebar-item-active .fi-sidebar-item-icon, 
+.fi-sidebar-item-active .fi-sidebar-group-label, 
+.fi-sidebar-item-active .fi-icon-btn {
+    @apply text-white dark:text-white; /* Active state */
+}
