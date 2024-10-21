@@ -1,10 +1,6 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 @config 'tailwind.config.js';
 
-body {
-    @apply !bg-gray-100 dark:!bg-gray-950;
-}
-
 .fi-sidebar {
     @apply bg-green-500 dark:bg-gray-900 border-r border-gray-300 dark:border-gray-700 shadow-lg !important;
 
@@ -43,6 +39,10 @@ body {
 
 
 
+
+body {
+    @apply !bg-gray-100 dark:!bg-gray-950;
+}
 
 .fi-breadcrumbs {
     @apply duration-1000 animate-in slide-in-from-right-5 fade-in;
