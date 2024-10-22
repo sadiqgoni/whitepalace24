@@ -29,24 +29,24 @@ class Room extends Model
         return $this->belongsTo(RoomType::class);
     }
 
-    // public function reservations()
-    // {
-    //     return $this->hasMany(Reservation::class);
-    // }
-    // public function housekeeper(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class, 'housekeeper_id');
-    // }
-    // public function groupReservation()
-    // {
-    //     return $this->hasMany(GroupReservation::class);
-    // }
-    // public function reservationWaitlist()
-    // {
-    //     return $this->hasMany(ReservationWaitlist::class);
-    // }
-    // public function checkIn()
-    // {
-    //     return $this->hasMany(CheckIn::class);
-    // }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    public function housekeeper(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'housekeeper_id');
+    }
+    public function groupReservation()
+    {
+        return $this->hasMany(GroupReservation::class);
+    }
+    public function reservationWaitlist()
+    {
+        return $this->hasMany(ReservationWaitlist::class);
+    }
+    public function checkIn()
+    {
+        return $this->hasMany(CheckIn::class);
+    }
 }

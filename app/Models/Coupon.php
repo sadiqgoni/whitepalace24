@@ -22,12 +22,12 @@ class Coupon extends Model
         'status',
     ];
 
-    // public function reservation()
-    // {
-    //     return $this->hasMany(Reservation::class);
-    // }
-    // public function groupReservation()
-    // {
-    //     return $this->hasMany(GroupReservation::class);
-    // }
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    public function groupReservation()
+    {
+        return $this->hasMany(GroupReservation::class);
+    }
 }

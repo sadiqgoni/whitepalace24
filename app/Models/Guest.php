@@ -18,27 +18,27 @@ class Guest extends Model
         'stay_count',
     ];
 
-    // public function reservations()
-    // {
-    //     return $this->hasMany(Reservation::class);
-    // }
-    // public function groupReservations()
-    // {
-    //     return $this->hasMany(GroupReservation::class, 'primary_guest_id');
-    // }
-    // public function reservationWaitlist()
-    // {
-    //     return $this->hasMany(ReservationWaitlist::class);
-    // }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    public function groupReservations()
+    {
+        return $this->hasMany(GroupReservation::class, 'primary_guest_id');
+    }
+    public function reservationWaitlist()
+    {
+        return $this->hasMany(ReservationWaitlist::class);
+    }
 
-    // public function checkIn()
-    // {
-    //     return $this->hasMany(CheckIn::class);
-    // }
+    public function checkIn()
+    {
+        return $this->hasMany(CheckIn::class);
+    }
 
-    // public function carRental()
-    // {
-    //     return $this->hasMany(CarRental::class);
-    // }
+    public function carRental()
+    {
+        return $this->hasMany(CarRental::class);
+    }
 
 }

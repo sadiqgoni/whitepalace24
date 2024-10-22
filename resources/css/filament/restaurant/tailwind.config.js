@@ -7,6 +7,8 @@ export default {
         './resources/views/filament/restaurant/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],
+    plugins: [require('tailwindcss-animate')],
+
 }
 
  

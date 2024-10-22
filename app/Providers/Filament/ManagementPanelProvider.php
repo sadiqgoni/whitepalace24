@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Management\Widgets\StatsOverview;
+use App\Http\Middleware\RoleRedirect;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -43,6 +44,13 @@ class ManagementPanelProvider extends PanelProvider
                     ->icon('heroicon-o-squares-2x2')
                     ->visible(fn(): bool => auth()->user()->role === 'Manager')
             ])
+            ->navigationGroups([
+                'General Reports',
+                'Sales Promo',  
+                'Food Section',
+                'Staff Management', 
+                'Configurations'       
+            ])
             ->discoverResources(in: app_path('Filament/Management/Resources'), for: 'App\\Filament\\Management\\Resources')
             ->discoverPages(in: app_path('Filament/Management/Pages'), for: 'App\\Filament\\Management\\Pages')
             ->pages([
@@ -67,6 +75,8 @@ class ManagementPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                RoleRedirect::class
+
             ])
             ->viteTheme('resources/css/filament/management/theme.css');
             

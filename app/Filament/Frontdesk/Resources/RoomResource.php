@@ -7,27 +7,23 @@ use App\Filament\Frontdesk\Resources\RoomResource\RelationManagers;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\RoomType;
-use App\Models\StaffManagement;
 use App\Models\User;
-use Filament\Actions\Action;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Model;
 
 class RoomResource extends Resource
 {
@@ -110,18 +106,18 @@ class RoomResource extends Resource
         $user = auth()->user(); 
         return $table
             ->columns([
-                // TextColumn::make('id')
-                //     ->label('ID')
-                //     ->sortable()
-                //     ->visible(fn() => $user->role !== 'Housekeeper') // Hide for Housekeeper
-                //     ->searchable(),
+
                 TextColumn::make('room_number')
                     ->label('Room Number')
                     ->sortable()
+                    ->color(fn(?Model $record): array => \Filament\Support\Colors\Color::hex(optional($record->tenant)->color ?? '#22e03a'))
+                    ->weight('bold')
                     ->searchable(),
                 TextColumn::make('roomType.name')
                     ->label('Room Type')
                     ->sortable()
+                    ->color(fn(?Model $record): array => \Filament\Support\Colors\Color::hex(optional($record->tenant)->color ?? '#15803d'))
+                    ->weight('bold')
                     ->searchable(),
                 TextColumn::make('price_per_night')
                     ->label('Price per Night')
@@ -266,5 +262,10 @@ class RoomResource extends Resource
             'view' => Pages\ViewRoom::route('/{record}'),
             'edit' => Pages\EditRoom::route('/{record}/edit'),
         ];
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'frontdesk';
     }
 }

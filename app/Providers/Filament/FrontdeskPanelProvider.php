@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\RoleRedirect;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -32,6 +33,7 @@ class FrontdeskPanelProvider extends PanelProvider
                 'primary' => Color::Green,
             ])
             ->discoverResources(in: app_path('Filament/Frontdesk/Resources'), for: 'App\\Filament\\Frontdesk\\Resources')
+            ->discoverResources(in: app_path('Filament/Housekeeper/Resources'), for: 'App\\Filament\\Housekeeper\\Resources')
             ->discoverResources(in: app_path('Filament/Management/Resources'), for: 'App\\Filament\\Management\\Resources')
             ->discoverPages(in: app_path('Filament/Frontdesk/Pages'), for: 'App\\Filament\\Frontdesk\\Pages')
             ->navigationGroups([
@@ -75,6 +77,8 @@ class FrontdeskPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                RoleRedirect::class
+
             ])
             ->viteTheme('resources/css/filament/frontdesk/theme.css');
             

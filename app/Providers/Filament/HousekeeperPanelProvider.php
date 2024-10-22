@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\RoleRedirect;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -28,6 +29,7 @@ class HousekeeperPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->login()
             ->discoverResources(in: app_path('Filament/Housekeeper/Resources'), for: 'App\\Filament\\Housekeeper\\Resources')
             ->discoverPages(in: app_path('Filament/Housekeeper/Pages'), for: 'App\\Filament\\Housekeeper\\Pages')
             ->pages([
@@ -36,7 +38,7 @@ class HousekeeperPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Housekeeper/Widgets'), for: 'App\\Filament\\Housekeeper\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -51,6 +53,8 @@ class HousekeeperPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                RoleRedirect::class
+
             ])
             ->viteTheme('resources/css/filament/housekeeper/theme.css');
 

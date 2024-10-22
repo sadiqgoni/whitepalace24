@@ -5,6 +5,7 @@ namespace App\Filament\Frontdesk\Resources;
 use App\Filament\Frontdesk\Resources\RoomTypeResource\Pages;
 use App\Filament\Frontdesk\Resources\RoomTypeResource\RelationManagers;
 use App\Models\RoomType;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RoomTypeResource extends Resource
@@ -63,6 +65,8 @@ class RoomTypeResource extends Resource
                 TextColumn::make('name')
                     ->label('Room Type Name')
                     ->sortable()
+                    ->color(fn(?Model $record): array => \Filament\Support\Colors\Color::hex(optional($record->tenant)->color ?? '#22e03a'))
+                    ->weight('bold')
                     ->searchable(),
                 TextColumn::make('base_price')
                     ->label('Base Price')
@@ -106,5 +110,9 @@ class RoomTypeResource extends Resource
             'view' => Pages\ViewRoomType::route('/{record}'),
             'edit' => Pages\EditRoomType::route('/{record}/edit'),
         ];
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::getCurrentPanel()?->getId() === 'frontdesk';
     }
 }

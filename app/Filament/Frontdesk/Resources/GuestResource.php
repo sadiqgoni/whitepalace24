@@ -6,7 +6,6 @@ use App\Filament\Frontdesk\Resources\GuestResource\Pages;
 use App\Filament\Frontdesk\Resources\GuestResource\RelationManagers;
 use App\Models\Guest;
 use Filament\Facades\Filament;
-use Filament\Forms;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,10 +13,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
+use Illuminate\Database\Eloquent\Model;
 
 
 class GuestResource extends Resource
@@ -79,6 +78,8 @@ class GuestResource extends Resource
                 TextColumn::make('name')
                     ->label('Full Name')
                     ->sortable()
+                    ->color(fn(?Model $record): array => \Filament\Support\Colors\Color::hex(optional($record->tenant)->color ?? '#22e03a'))
+                    ->weight('bold')
                     ->searchable(),
                 TextColumn::make('phone_number')
                     ->label('Phone Number')

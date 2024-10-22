@@ -7,6 +7,8 @@ export default {
         './resources/views/filament/housekeeper/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],
+    plugins: [require('tailwindcss-animate')],
+
     theme: {
       extend: {
         colors: {
@@ -24,5 +26,4 @@ export default {
         },
       },
     },
-    plugins: [],
 }
