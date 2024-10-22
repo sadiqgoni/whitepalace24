@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
 class FrontdeskPanelProvider extends PanelProvider
 {
@@ -57,7 +58,7 @@ class FrontdeskPanelProvider extends PanelProvider
                     ->visible(fn(): bool => auth()->user()->role === 'Manager')
             ])
             ->pages([
-                Pages\Dashboard::class,
+                // Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Frontdesk/Widgets'), for: 'App\\Filament\\Frontdesk\\Widgets')
             ->widgets([
@@ -80,7 +81,25 @@ class FrontdeskPanelProvider extends PanelProvider
                 RoleRedirect::class
 
             ])
-            ->viteTheme('resources/css/filament/frontdesk/theme.css');
+            ->viteTheme('resources/css/filament/frontdesk/theme.css')
+            ->plugins([
+                // FilamentBackgroundsPlugin::make()
+                //     ->remember(200)
+                //     ->imageProvider(
+                //         MyImages::make()
+                //             ->directory('assets/background')
+                //     )
+                //     ->showAttribution(false),
+
+                FilamentFullCalendarPlugin::make()
+                    ->selectable()
+                    ->editable(),
+
+
+
+                // FilamentApexChartsPlugin::make()
+            ]);
+
             
     }
 }

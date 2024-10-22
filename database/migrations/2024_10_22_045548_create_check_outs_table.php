@@ -23,9 +23,15 @@ return new class extends Migration {
             $table->decimal('additional_charges', 12, 2)->default(0)->nullable();
             $table->decimal('restaurant_charge', 12, 2)->default(0)->nullable();
             $table->string('late_check_out')->nullable();
-            $table->string('car_hire')->nullable();
-            $table->string('laundry')->nullable();
-            $table->decimal('paid_amount', 12, 2)->nullable();
+            $table->decimal('car_hire_charge',12,2)->nullable();
+            $table->decimal('laundry_charge',12,2)->nullable();
+            $table->decimal('advance_payment', 12, 2)->nullable();
+            $table->decimal('price_per_night', 12, 2)->nullable();
+            $table->decimal('due_amount', 12, 2)->nullable();
+            $table->decimal('payable_amount', 12, 2)->nullable();
+            $table->decimal('remaining_amount', 12, 2)->nullable();
+            $table->decimal('change_amount', 12, 2)->nullable();
+            $table->decimal('amount_paying', 12, 2)->nullable();
             $table->timestamps();
         });
     }

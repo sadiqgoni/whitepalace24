@@ -22,6 +22,15 @@ class CheckOut extends Model
         'laundry',
         'late_check_out',
         'car_hire',
-        'paid_amount',
+
+        'price_per_night' ,
+        'advance_payment' ,
+        'laundry_charge' ,
+        'car_hire_charge',
+        'due_amount' ,
+        'payable_amount' ,
+        'remaining_amount',
+        'change_amount',
+        'amount_paying'
     ];
 }
