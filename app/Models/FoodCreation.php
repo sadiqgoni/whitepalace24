@@ -14,4 +14,8 @@ class FoodCreation extends Model
     {
         return $this->belongsTo(FoodDivision::class);
     }
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }
